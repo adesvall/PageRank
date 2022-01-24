@@ -6,7 +6,7 @@
 
 typedef struct	s_list
 {
-	float 		proba;
+	vertex		*vertex;
 	struct list	*next;
 }				t_list;
 

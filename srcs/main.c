@@ -2,11 +2,12 @@
 
 float maj_proba(vertex *v)
 {
-	float new_proba;
+	float 	new_proba = 0;
+	t_list 	*cur = v->prede;
 
-	for (int i = 0; i < v->prede; i++)
+	for (int i = 0; cur != NULL; cur = cur->next)
 	{
-		
+		new_proba += cur->vertex->proba;
 	}
 	return ;
 }
