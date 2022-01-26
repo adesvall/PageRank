@@ -3,19 +3,23 @@
 float maj_proba(vertex *v)
 {
 	float 	new_proba = 0;
-	t_list 	*cur = v->prede;
-
-	for (int i = 0; cur != NULL; cur = cur->next)
+	
+	for (t_list *cur = v->prede; cur != NULL; cur = cur->next)
 	{
 		new_proba += cur->vertex->proba;
 	}
-	return ;
+	return new_proba;
 }
 
-int main(int argc, char const *argv[])
+int main(int argc, char *argv[])
 {
 	vertex_lst	adj;
+	char *file = NULL;
+
+	if (argc >= 2)
+		file = argv[2];
 	
+	parse_file(file, &adj);
 
 	return 0;
 }

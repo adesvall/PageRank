@@ -1,6 +1,6 @@
 NAME		= pagerank
 
-SRCS		= srcs/main.c
+SRCS		= srcs/main.c srcs/list_utils.c srcs/parse_file.c
 
 OBJS		= ${SRCS:.c=.o}
 
