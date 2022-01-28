@@ -46,6 +46,7 @@ size_t	counts_lines(FILE *flux)
 	return n_line;
 }
 
+/* Here all the names of the web pages are read and stocked. complexity = O(n)*/
 char	**malloc_names(FILE *flux)
 {
 	char		*line = NULL;
@@ -72,6 +73,7 @@ char	**malloc_names(FILE *flux)
 	return names;
 }
 
+ /* complexity = O(n * len(line)) ~ O(n * n) */
 int	parse_wikiline(char *line, int *matrix, int i_line, char **names)
 {
 	char *tok;
@@ -81,7 +83,7 @@ int	parse_wikiline(char *line, int *matrix, int i_line, char **names)
 	tok = strtok(NULL, "|\n");
 	while (tok)
 	{
-		i_column = get_index(names, tok);
+		i_column = get_index(names, tok); // complexity : O(n)
 		if (i_column != -1 && i_column != i_line)
 			matrix[i_column] = 1;
 		tok = strtok(NULL, "|\n");
@@ -89,6 +91,14 @@ int	parse_wikiline(char *line, int *matrix, int i_line, char **names)
 	return (0);
 }
 
+/*
+Max complexity caused by parse wikiline done n times
+that get us to a complexity in O(n**3)
+To improve the performance, we would like to change the way names and index are linked in the program
+We would like to find an easy way to get a page index with its name
+- for instance we could implement a alphabetic tree storage
+- or use a hash to attribute an index to the page directly since their name
+*/
 int	parse_links(FILE *flux, vertex_lst *v_lst, char **names)
 {
 	char		*line = NULL;
@@ -117,8 +127,6 @@ int	parse_links(FILE *flux, vertex_lst *v_lst, char **names)
 				}
 			}
 		}
-		if (i % 27 == 0)
-			printf("%d linked...\r", i);
 		i++;
 	}
 	printf("\n");

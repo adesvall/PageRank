@@ -1,5 +1,6 @@
 #include "pagerank.h"
 
+/* complexity = O(n) */
 float new_proba(vertex *v, vertex *super_vertex, size_t len)
 {
 	float 	new_proba = 0;
@@ -10,6 +11,7 @@ float new_proba(vertex *v, vertex *super_vertex, size_t len)
 	return new_proba;
 }
 
+/* complexity = O(n) */
 float	new_super_proba(vertex_lst *v_lst)
 {
 	float	new_proba = 0;
@@ -19,6 +21,8 @@ float	new_super_proba(vertex_lst *v_lst)
 	return new_proba;
 }
 
+
+/* complexity = O(n**2) */
 void	update_probas(vertex_lst *v_lst)
 {
 	float	probas[v_lst->len];

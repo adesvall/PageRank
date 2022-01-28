@@ -52,6 +52,7 @@ int	test_mode(char *karg)
 	return 0;
 }
 
+/* Here the sort is slow, complexite en n^2 but it is justified as x is not usually big  */
 void	print_x_best(int x, char **names, vertex_lst *v_lst)
 {
 	float 	best;
@@ -88,9 +89,11 @@ int	normal_mode(char *file, char *x_arg)
 	char	**names;
 	if (parse_normal_file(file, &v_lst, &names))
 		exit_and_free(-1, "Erreur parsing\n", &v_lst);
+
 	printf("prossessing proba...\n");
 	for (int i = 0; i < 100; i++)
 		update_probas(&v_lst);
+
 	print_x_best(x, names, &v_lst);
 	free_tab(names);
 	delete_vertex_lst(&v_lst);
