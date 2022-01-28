@@ -52,7 +52,7 @@ int	test_mode(char *karg)
 	return 0;
 }
 
-/* Here the sort is slow, complexite en n^2 but it is justified as x is not usually big  */
+/* Here the sort is slow, complexite en n**2 but it is justified as x is not usually big  */
 void	print_x_best(int x, char **names, vertex_lst *v_lst)
 {
 	float 	best;
@@ -103,16 +103,13 @@ int	normal_mode(char *file, char *x_arg)
 int main(int argc, char *argv[])
 {
 
-	if (argc <= 2 || argc > 4)
+	if (argc == 3 || argc == 4)
 	{
-		printf("Usage:\n%s\n", "test mode\t: ./programme -t k\ngraph mode\t: ./programme -n graphe.txt x");
-		return (-1);
+		if (!strcmp("-t", argv[1]) && argc == 3)
+			return test_mode(argv[2]);
+		else if (!strcmp("-n", argv[1]) && argc == 4)
+			return normal_mode(argv[2], argv[3]);
 	}
-	if (!strcmp("-t", argv[1]) && argc == 3)
-		return test_mode(argv[2]);
-	else if (!strcmp("-n", argv[1]) && argc == 4)
-		return normal_mode(argv[2], argv[3]);
-	
 	printf("Usage:\n%s\n", "test mode\t: ./programme -t k\ngraph mode\t: ./programme -n graphe.txt x");
 	return -1;
 }
